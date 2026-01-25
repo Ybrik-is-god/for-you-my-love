@@ -176,4 +176,27 @@ footer {
   color: #A0C4FF;
 }
 
+.side-character {
+  position: fixed;
+  bottom: 10px;
+  width: 80px;
+  z-index: 998;
+  transition: transform 0.5s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* gauche / droite */
+.side-character.left { left: 10px; }
+.side-character.right { right: 10px; }
+
+/* Animation flottante */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Responsive pour mobile */
+@media screen and (max-width: 480px) {
+  .side-character { width: 50px; }
+}
 
