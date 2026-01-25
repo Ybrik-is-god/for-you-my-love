@@ -162,3 +162,24 @@ body {
   text-decoration: underline;
   opacity: 1;
 }
+
+.album {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.album img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.album img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
