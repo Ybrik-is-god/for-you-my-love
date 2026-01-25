@@ -10,8 +10,7 @@
 
   <header>
     <h1>Happy Valentine's Day 💙</h1>
-    <h2>To the person who makes my heart beat faster
-    ⭐ (you :3) </h2>
+    <h2>To the person who makes my heart beat faster ⭐ (you :3)</h2>
     <div class="heart">⭐</div>
   </header>
 
@@ -20,7 +19,7 @@
     <p>
       I love you for the little moments, the big bursts of laughter, 
       the silences that speak volumes, and the sweetness you bring to my life. 
-      Every day by your side is a gift I cherish. I love when you are telling me that i'm the most important thing to your eyes and that i know i can thrust you.
+      Every day by your side is a gift I cherish. I love when you are telling me that I'm the most important thing to your eyes and that I know I can trust you.
     </p>
   </section>
 
@@ -74,7 +73,12 @@
   </footer>
   
   <div class="secret-message">
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">💌 Psst… Click here</a>
+    <button id="secretBtn">💌 Psst… Click here</button>
+  </div>
+
+  <div id="secretContent" class="hidden">
+    <p>Voici le contenu secret ! 💙</p>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Regarde la vidéo</a>
   </div>
 
   <section>
@@ -90,7 +94,7 @@
         <img src="dessin8.jpg" alt="Dessin 8">
     </div>
   </section>
-  
+
   <script>
   function toggleLove() {
     const surprise = document.getElementById("surprise");
@@ -114,20 +118,27 @@
     const audio = document.getElementById("loveSound");
     audio.volume = value;
   }
-</script>
+
+  document.getElementById("secretBtn").addEventListener("click", function() {
+    const password = prompt("🔒 Entre le mot de passe pour voir le message secret :");
+    
+    if(password === "Kirby01082009Duck") {
+      const secret = document.getElementById("secretContent");
+      secret.classList.remove("hidden");
+      this.style.display = "none";
+    } else if(password !== null) {
+      alert("❌ Mot de passe incorrect !");
+    }
+  });
+  </script>
+
+  <!-- Personnages flottants -->
+  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+      <img src="personnage1.png" class="side-character left" alt="Personnage 1">
+  </a>
+  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+      <img src="personnage2.png" class="side-character right" alt="Personnage 2">
+  </a>
 
 </body>
-
-<!-- Personnages flottants -->
-<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-    <img src="personnage1.png" class="side-character left" alt="Personnage 1">
-</a>
-<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-<img src="personnage2.png" class="side-character right" alt="Personnage 2">
-</a>
-  
 </html>
-
-
-
-
