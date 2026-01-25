@@ -182,30 +182,40 @@ footer {
 /* Personnages flottants */
 .side-character {
   position: fixed;
-  bottom: 150px;  /* flottant au-dessus du message secret */
   width: 80px;
-  z-index: 999;  /* au-dessus de tout */
+  z-index: 999;
   transition: transform 0.5s ease;
   animation: float 3s ease-in-out infinite;
 }
 
-/* gauche / droite */
-.side-character.left { 
-    left: 10px; 
+/* Animations différentes pour chaque personnage */
+#char1 {
+  bottom: 30px;   /* distance depuis le bas */
+  left: 10px;     /* distance depuis la gauche */
+  animation: float1 3s ease-in-out infinite;
 }
-.side-character.right { 
-    right: 10px; 
+
+#char2 {
+  bottom: 150px;  /* un peu plus haut */
+  right: 20px;
+  animation: float2 4s ease-in-out infinite;
 }
 
 /* Animation flottante */
-@keyframes float {
+@keyframes float1 {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
 
 /* Responsive pour mobile */
 @media screen and (max-width: 480px) {
   .side-character { width: 50px; bottom: 50px; }  /* s’adapte aux petits écrans */
 }
+
 
 
