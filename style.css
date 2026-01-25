@@ -216,6 +216,3 @@ footer {
 @media screen and (max-width: 480px) {
   .side-character { width: 50px; bottom: 50px; }  /* s’adapte aux petits écrans */
 }
-
-
-
