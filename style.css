@@ -11,8 +11,8 @@ body {
   background: linear-gradient(135deg, #0B132B, #1C2541);
   color: #EAEAEA;
   text-align: center;
-  overflow-x: hidden; /* pas de scroll horizontal */
-  padding: 0 10px;    /* petit padding sur mobile */
+  overflow-x: hidden;
+  padding: 0 10px;
 }
 
 /* Header */
@@ -85,6 +85,19 @@ button:hover {
   display: none;
 }
 
+#secretContent {
+  position: fixed;
+  bottom: 40px;   /* juste au-dessus du bouton */
+  right: 10px;
+  background: rgba(58, 80, 107, 0.8);
+  color: #A0C4FF;
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 200px;
+  text-align: center;
+  z-index: 998;  /* inférieur aux personnages */
+}
+
 .love-text {
   font-size: 1.2em;
   margin-top: 15px;
@@ -137,7 +150,7 @@ button:hover {
   width: 100%;
   max-width: 200px;
   height: 200px;
-  object-fit: cover;       /* recadre les screenshots ou images différentes */
+  object-fit: cover;
   border-radius: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
@@ -151,22 +164,12 @@ button:hover {
 /* Message secret coin bas droite */
 .secret-message {
   position: fixed;
-  bottom: 5px;
+  bottom: 10px;  /* légèrement en dessous du personnage */
   right: 10px;
   font-size: 10px;
   color: #A0C4FF;
   opacity: 0.6;
-  z-index: 999;
-}
-
-.secret-message a {
-  color: #A0C4FF;
-  text-decoration: none;
-}
-
-.secret-message a:hover {
-  text-decoration: underline;
-  opacity: 1;
+  z-index: 997;
 }
 
 /* Footer */
@@ -176,18 +179,23 @@ footer {
   color: #A0C4FF;
 }
 
+/* Personnages flottants */
 .side-character {
   position: fixed;
-  bottom: 10px;
+  bottom: 150px;  /* flottant au-dessus du message secret */
   width: 80px;
-  z-index: 998;
+  z-index: 999;  /* au-dessus de tout */
   transition: transform 0.5s ease;
   animation: float 3s ease-in-out infinite;
 }
 
 /* gauche / droite */
-.side-character.left { left: 10px; }
-.side-character.right { right: 10px; }
+.side-character.left { 
+    left: 10px; 
+}
+.side-character.right { 
+    right: 10px; 
+}
 
 /* Animation flottante */
 @keyframes float {
@@ -197,6 +205,7 @@ footer {
 
 /* Responsive pour mobile */
 @media screen and (max-width: 480px) {
-  .side-character { width: 50px; }
+  .side-character { width: 50px; bottom: 50px; }  /* s’adapte aux petits écrans */
 }
+
 
