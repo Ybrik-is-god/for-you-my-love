@@ -1,13 +1,23 @@
-body {
+/* Reset box-sizing pour éviter débordements */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+/* Corps de page */
+body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #0B132B, #1C2541);
   color: #EAEAEA;
   text-align: center;
+  overflow-x: hidden; /* pas de scroll horizontal */
+  padding: 0 10px;    /* petit padding sur mobile */
 }
 
+/* Header */
 header {
-  padding: 80px 20px;
+  padding: 60px 10px;
 }
 
 h1, h2 {
@@ -15,23 +25,25 @@ h1, h2 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 section {
   background: rgba(58, 80, 107, 0.6);
-  margin: 40px auto;
-  padding: 30px;
+  margin: 30px auto;
+  padding: 20px;
   border-radius: 20px;
   max-width: 800px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+/* Paragraphes */
 p {
   font-size: 1.2em;
   line-height: 1.6;
 }
 
+/* Heart animation */
 .heart {
   font-size: 3em;
   animation: beat 1.5s infinite;
@@ -43,11 +55,12 @@ p {
   50% { transform: scale(1.15); }
 }
 
+/* Bouton */
 button {
   background: #3A86FF;
   color: white;
   border: none;
-  padding: 15px 30px;
+  padding: 12px 25px;
   font-size: 1em;
   border-radius: 30px;
   cursor: pointer;
@@ -59,43 +72,42 @@ button:hover {
   transform: scale(1.05);
 }
 
+/* Signature */
 .signature {
-  margin-top: 20px;
+  margin-top: 15px;
   font-style: italic;
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #A0C4FF;
 }
 
+/* Surprise hidden */
 .hidden {
   display: none;
 }
 
 .love-text {
-  font-size: 1.4em;
-  margin-top: 20px;
+  font-size: 1.2em;
+  margin-top: 15px;
   color: #EAEAEA;
 }
 
+/* Gif amour */
 .love-gif {
-  width: 250px;
-  margin-top: 20px;
+  width: 100%;
+  max-width: 250px;
   border-radius: 20px;
   animation: fadeIn 1s ease forwards;
+  pointer-events: none;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
+/* Volume slider */
 .volume-control {
-  margin-top: 20px;
+  margin-top: 15px;
   color: #A0C4FF;
   font-size: 0.9em;
 }
@@ -106,43 +118,37 @@ button:hover {
 }
 
 .volume-control input[type="range"] {
-  width: 200px;
-  accent-color: #3A86FF;
-  cursor: pointer;
-
-  pointer-events: auto;
-  touch-action: none;
-  -webkit-appearance: auto;
-}
-
-.love-gif {
-  pointer-events: none;
-}
-
-.volume-control {
-  position: relative;
-  z-index: 10;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.love-gif {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-}
-
-.volume-control input[type="range"] {
   width: 100%;
   max-width: 200px;
+  accent-color: #3A86FF;
+  cursor: pointer;
 }
 
-body {
-  overflow-x: hidden; /* optionnel pour sécuriser */
+/* Album d’images responsive */
+.album {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  justify-items: center;
+  margin-top: 20px;
 }
 
+.album img {
+  width: 100%;
+  max-width: 200px;
+  height: 200px;
+  object-fit: cover;       /* recadre les screenshots ou images différentes */
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.album img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Message secret coin bas droite */
 .secret-message {
   position: fixed;
   bottom: 5px;
@@ -163,23 +169,11 @@ body {
   opacity: 1;
 }
 
-.album {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  justify-items: center;
-  margin-top: 20px;
+/* Footer */
+footer {
+  margin: 30px 0;
+  font-size: 0.9em;
+  color: #A0C4FF;
 }
 
-.album img {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
 
-.album img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
