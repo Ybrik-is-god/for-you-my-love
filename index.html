@@ -77,8 +77,8 @@
   </div>
 
   <div id="secretContent" class="hidden">
-    <p>Voici le contenu secret ! 💙</p>
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Regarde la vidéo</a>
+    <p>Here is the secret content! 💙</p>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch the video</a>
   </div>
 
   <section>
@@ -154,14 +154,14 @@
 
   
     document.getElementById("secretBtn").addEventListener("click", function() {
-        const password = prompt("🔒 Entre le mot de passe pour voir le message secret :");
+        const password = prompt("🔒 Enter the password to view the secret message:");
         
         if(password === "Kirby01082009Duck") {
         const secret = document.getElementById("secretContent");
         secret.classList.remove("hidden");
         this.style.display = "none";
         } else if(password !== null) {
-        alert("❌ Mot de passe incorrect !");
+        alert("❌ Incorrect password!");
         }
     });
   </script>
@@ -176,6 +176,7 @@
 
 </body>
 </html>
+
 
 
 
