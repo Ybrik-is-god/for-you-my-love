@@ -96,40 +96,74 @@
   </section>
 
   <script>
-  function toggleLove() {
+    const audio = document.getElementById("loveSound");
+
+    // Fonction pour fade out
+    function fadeOutAudio(audio, duration) {
+    let step = 50; // intervalle en ms
+    let volumeStep = audio.volume / (duration / step);
+
+    let fadeAudio = setInterval(() => {
+        if (audio.volume - volumeStep > 0) {
+        audio.volume -= volumeStep;
+        } else {
+        audio.volume = 0;
+        audio.pause();
+        clearInterval(fadeAudio);
+        }
+    }, step);
+    }
+
+    // Lance le son avec fade in si tu veux (optionnel)
+    function playAudio() {
+    audio.volume = document.getElementById("volume").value; 
+    audio.currentTime = 0;
+    audio.play();
+    }
+
+    // Surveille la fin du son pour faire un fade
+    audio.addEventListener("timeupdate", () => {
+    const remaining = audio.duration - audio.currentTime;
+    if (remaining <= 2 && !audio.fading) { // 2 secondes avant la fin
+        audio.fading = true;
+        fadeOutAudio(audio, remaining * 1000); // convertit en ms
+    }
+    });
+
+    // Toggle surprise
+    function toggleLove() {
     const surprise = document.getElementById("surprise");
     const button = document.getElementById("loveBtn");
-    const audio = document.getElementById("loveSound");
 
     if (surprise.classList.contains("hidden")) {
-      surprise.classList.remove("hidden");
-      button.textContent = "Hide the love 💙";
-      audio.currentTime = 0;
-      audio.play();
+        surprise.classList.remove("hidden");
+        button.textContent = "Hide the love 💙";
+        audio.fading = false; // reset fade
+        playAudio();
     } else {
-      surprise.classList.add("hidden");
-      button.textContent = "Click here 💖";
-      audio.pause();
-      audio.currentTime = 0;
+        surprise.classList.add("hidden");
+        button.textContent = "Click here 💖";
+        fadeOutAudio(audio, 2000); // fade quand on cache
     }
-  }
+    }
 
-  function setVolume(value) {
-    const audio = document.getElementById("loveSound");
+    // Ajuste le volume pendant que le son joue
+    function setVolume(value) {
     audio.volume = value;
-  }
-
-  document.getElementById("secretBtn").addEventListener("click", function() {
-    const password = prompt("🔒 Entre le mot de passe pour voir le message secret :");
-    
-    if(password === "Kirby01082009Duck") {
-      const secret = document.getElementById("secretContent");
-      secret.classList.remove("hidden");
-      this.style.display = "none";
-    } else if(password !== null) {
-      alert("❌ Mot de passe incorrect !");
     }
-  });
+
+  
+    document.getElementById("secretBtn").addEventListener("click", function() {
+        const password = prompt("🔒 Entre le mot de passe pour voir le message secret :");
+        
+        if(password === "Kirby01082009Duck") {
+        const secret = document.getElementById("secretContent");
+        secret.classList.remove("hidden");
+        this.style.display = "none";
+        } else if(password !== null) {
+        alert("❌ Mot de passe incorrect !");
+        }
+    });
   </script>
 
   <!-- Personnages flottants -->
@@ -142,3 +176,4 @@
 
 </body>
 </html>
+
