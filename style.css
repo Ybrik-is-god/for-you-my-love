@@ -142,3 +142,23 @@ button:hover {
 body {
   overflow-x: hidden; /* optionnel pour sécuriser */
 }
+
+.secret-message {
+  position: fixed;
+  bottom: 5px;
+  right: 10px;
+  font-size: 10px;
+  color: #A0C4FF;
+  opacity: 0.6;
+  z-index: 999;
+}
+
+.secret-message a {
+  color: #A0C4FF;
+  text-decoration: none;
+}
+
+.secret-message a:hover {
+  text-decoration: underline;
+  opacity: 1;
+}
