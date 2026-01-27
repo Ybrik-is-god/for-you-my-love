@@ -92,13 +92,13 @@ function setVolume(value) {
    MESSAGE SECRET
 ========================= */
 document.getElementById("secretBtn").addEventListener("click", function () {
-  const password = prompt("🔒 Entre le mot de passe pour voir le message secret :");
+  const password = prompt("🔒 Enter the password to see the secret message :");
 
   if (password === "Kirby01082009Duck") {
     document.getElementById("secretContent").classList.remove("hidden");
     this.style.display = "none";
   } else if (password !== null) {
-    alert("❌ Mot de passe incorrect !");
+    alert("❌ Password incorrect !");
   }
 });
 </script>
