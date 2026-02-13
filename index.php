@@ -1,3 +1,7 @@
+<?php
+// You can add PHP logic here if needed
+// For example: database queries, sessions, etc.
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -87,5 +91,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
