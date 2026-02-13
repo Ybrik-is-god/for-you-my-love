@@ -1,7 +1,11 @@
- document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
   const audio = document.getElementById("loveSound");
   const volumeSlider = document.getElementById("volume");
+  const loveBtn = document.getElementById("loveBtn");
+  const surprise = document.getElementById("surprise");
+  const secretBtn = document.getElementById("secretBtn");
+  const secretContent = document.getElementById("secretContent");
 
   const FADE_IN = 3;
   const FADE_OUT = 7;
@@ -56,31 +60,28 @@
     }
   });
 
-  window.toggleLove = function () {
-    const surprise = document.getElementById("surprise");
-    const button = document.getElementById("loveBtn");
-
+  loveBtn.addEventListener("click", () => {
     if (surprise.classList.contains("hidden")) {
       surprise.classList.remove("hidden");
-      button.textContent = "Hide the love 💙";
+      loveBtn.textContent = "Hide the love 💙";
       fadeIn();
     } else {
       surprise.classList.add("hidden");
-      button.textContent = "Click here 💖";
+      loveBtn.textContent = "Click here ⭐";
       fadeOut(FADE_OUT);
     }
-  };
+  });
 
-  window.setVolume = function (value) {
-    audio.volume = value;
-  };
+  volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value;
+  });
 
-  document.getElementById("secretBtn").addEventListener("click", function () {
-    const password = prompt("🔒 Enter the password to see the secret message :");
+  secretBtn.addEventListener("click", () => {
+    const password = prompt("🔒 Enter the password :");
 
     if (password === "Kirby01082009Duck") {
-      document.getElementById("secretContent").classList.remove("hidden");
-      this.style.display = "none";
+      secretContent.classList.remove("hidden");
+      secretBtn.style.display = "none";
     } else if (password !== null) {
       alert("❌ Password incorrect !");
     }
