@@ -1,90 +1,77 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ========================= VARIABLES ========================= */
+const audio = document.getElementById("loveSound");
+const volumeSlider = document.getElementById("volume");
+const FADE_IN = 3; // secondes
+const FADE_OUT = 7; // secondes
+let fadeInterval = null;
 
-  const audio = document.getElementById("loveSound");
-  const volumeSlider = document.getElementById("volume");
-  const loveBtn = document.getElementById("loveBtn");
-  const surprise = document.getElementById("surprise");
-  const secretBtn = document.getElementById("secretBtn");
-  const secretContent = document.getElementById("secretContent");
-
-  const FADE_IN = 3;
-  const FADE_OUT = 7;
-
-  let fadeInterval = null;
-  let isFadingOut = false;
-
-  function fadeIn() {
+/* ========================= FADE IN ========================= */
+function fadeIn() {
     clearInterval(fadeInterval);
-    isFadingOut = false;
-
     audio.currentTime = 0;
     audio.volume = 0;
-    audio.play();
-
-    const target = parseFloat(volumeSlider.value);
+    audio.play(); // déclenché par clic => autorisé
+    const target = volumeSlider.value;
     const step = target / (FADE_IN * 20);
-
     fadeInterval = setInterval(() => {
-      if (audio.volume < target) {
-        audio.volume = Math.min(audio.volume + step, target);
-      } else {
-        clearInterval(fadeInterval);
-      }
+        if (audio.volume < target) {
+            audio.volume = Math.min(audio.volume + step, target);
+        } else {
+            clearInterval(fadeInterval);
+        }
     }, 50);
-  }
+}
 
-  function fadeOut(duration) {
-    if (isFadingOut) return;
-    isFadingOut = true;
-
+/* ========================= FADE OUT ========================= */
+function fadeOut(duration) {
     clearInterval(fadeInterval);
     const step = audio.volume / (duration * 20);
-
     fadeInterval = setInterval(() => {
-      if (audio.volume > 0) {
-        audio.volume = Math.max(audio.volume - step, 0);
-      } else {
-        audio.pause();
-        clearInterval(fadeInterval);
-        isFadingOut = false;
-      }
+        if (audio.volume > 0) {
+            audio.volume = Math.max(audio.volume - step, 0);
+        } else {
+            audio.pause();
+            clearInterval(fadeInterval);
+        }
     }, 50);
-  }
+}
 
-  audio.addEventListener("timeupdate", () => {
-    if (!audio.duration) return;
-
+/* ========================= FIN NATURELLE ========================= */
+audio.addEventListener("timeupdate", () => {
+    if (!audio.duration || isNaN(audio.duration)) return;
     const remaining = audio.duration - audio.currentTime;
     if (remaining <= FADE_OUT && audio.volume > 0) {
-      fadeOut(remaining);
+        fadeOut(remaining);
     }
-  });
+});
 
-  loveBtn.addEventListener("click", () => {
+/* ========================= BOUTON LOVE ========================= */
+function toggleLove() {
+    const surprise = document.getElementById("surprise");
+    const button = document.getElementById("loveBtn");
     if (surprise.classList.contains("hidden")) {
-      surprise.classList.remove("hidden");
-      loveBtn.textContent = "Hide the love 💙";
-      fadeIn();
+        surprise.classList.remove("hidden");
+        button.textContent = "Hide the love 💙";
+        fadeIn();
     } else {
-      surprise.classList.add("hidden");
-      loveBtn.textContent = "Click here ⭐";
-      fadeOut(FADE_OUT);
+        surprise.classList.add("hidden");
+        button.textContent = "Click here 💖";
+        fadeOut(FADE_OUT);
     }
-  });
+}
 
-  volumeSlider.addEventListener("input", () => {
-    audio.volume = volumeSlider.value;
-  });
+/* ========================= VOLUME LIVE ========================= */
+function setVolume(value) {
+    audio.volume = value;
+}
 
-  secretBtn.addEventListener("click", () => {
-    const password = prompt("🔒 Enter the password :");
-
+/* ========================= MESSAGE SECRET ========================= */
+document.getElementById("secretBtn").addEventListener("click", function () {
+    const password = prompt("🔒 Enter the password to see the secret message :");
     if (password === "Kirby01082009Duck") {
-      secretContent.classList.remove("hidden");
-      secretBtn.style.display = "none";
+        document.getElementById("secretContent").classList.remove("hidden");
+        this.style.display = "none";
     } else if (password !== null) {
-      alert("❌ Password incorrect !");
+        alert("❌ Password incorrect !");
     }
-  });
-
 });
