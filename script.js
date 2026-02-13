@@ -1,104 +1,89 @@
- <script>
-/* =========================
-   VARIABLES
-========================= */
-const audio = document.getElementById("loveSound");
-const volumeSlider = document.getElementById("volume");
+ document.addEventListener("DOMContentLoaded", () => {
 
-const FADE_IN = 3;   // secondes
-const FADE_OUT = 7; // secondes
+  const audio = document.getElementById("loveSound");
+  const volumeSlider = document.getElementById("volume");
 
-let fadeInterval = null;
+  const FADE_IN = 3;
+  const FADE_OUT = 7;
 
-/* =========================
-   FADE IN
-========================= */
-function fadeIn() {
-  clearInterval(fadeInterval);
+  let fadeInterval = null;
+  let isFadingOut = false;
 
-  audio.currentTime = 0;
-  audio.volume = 0;
-  audio.play(); // déclenché par clic => autorisé
+  function fadeIn() {
+    clearInterval(fadeInterval);
+    isFadingOut = false;
 
-  const target = volumeSlider.value;
-  const step = target / (FADE_IN * 20);
+    audio.currentTime = 0;
+    audio.volume = 0;
+    audio.play();
 
-  fadeInterval = setInterval(() => {
-    if (audio.volume < target) {
-      audio.volume = Math.min(audio.volume + step, target);
-    } else {
-      clearInterval(fadeInterval);
+    const target = parseFloat(volumeSlider.value);
+    const step = target / (FADE_IN * 20);
+
+    fadeInterval = setInterval(() => {
+      if (audio.volume < target) {
+        audio.volume = Math.min(audio.volume + step, target);
+      } else {
+        clearInterval(fadeInterval);
+      }
+    }, 50);
+  }
+
+  function fadeOut(duration) {
+    if (isFadingOut) return;
+    isFadingOut = true;
+
+    clearInterval(fadeInterval);
+    const step = audio.volume / (duration * 20);
+
+    fadeInterval = setInterval(() => {
+      if (audio.volume > 0) {
+        audio.volume = Math.max(audio.volume - step, 0);
+      } else {
+        audio.pause();
+        clearInterval(fadeInterval);
+        isFadingOut = false;
+      }
+    }, 50);
+  }
+
+  audio.addEventListener("timeupdate", () => {
+    if (!audio.duration) return;
+
+    const remaining = audio.duration - audio.currentTime;
+    if (remaining <= FADE_OUT && audio.volume > 0) {
+      fadeOut(remaining);
     }
-  }, 50);
-}
+  });
 
-/* =========================
-   FADE OUT
-========================= */
-function fadeOut(duration) {
-  clearInterval(fadeInterval);
+  window.toggleLove = function () {
+    const surprise = document.getElementById("surprise");
+    const button = document.getElementById("loveBtn");
 
-  const step = audio.volume / (duration * 20);
-
-  fadeInterval = setInterval(() => {
-    if (audio.volume > 0) {
-      audio.volume = Math.max(audio.volume - step, 0);
+    if (surprise.classList.contains("hidden")) {
+      surprise.classList.remove("hidden");
+      button.textContent = "Hide the love 💙";
+      fadeIn();
     } else {
-      audio.pause();
-      clearInterval(fadeInterval);
+      surprise.classList.add("hidden");
+      button.textContent = "Click here 💖";
+      fadeOut(FADE_OUT);
     }
-  }, 50);
-}
+  };
 
-/* =========================
-   FIN NATURELLE
-========================= */
-audio.addEventListener("timeupdate", () => {
-  if (!audio.duration) return;
+  window.setVolume = function (value) {
+    audio.volume = value;
+  };
 
-  const remaining = audio.duration - audio.currentTime;
+  document.getElementById("secretBtn").addEventListener("click", function () {
+    const password = prompt("🔒 Enter the password to see the secret message :");
 
-  if (remaining <= FADE_OUT && audio.volume > 0) {
-    fadeOut(remaining);
-  }
+    if (password === "Kirby01082009Duck") {
+      document.getElementById("secretContent").classList.remove("hidden");
+      this.style.display = "none";
+    } else if (password !== null) {
+      alert("❌ Password incorrect !");
+    }
+  });
+
 });
-
-/* =========================
-   BOUTON LOVE
-========================= */
-function toggleLove() {
-  const surprise = document.getElementById("surprise");
-  const button = document.getElementById("loveBtn");
-
-  if (surprise.classList.contains("hidden")) {
-    surprise.classList.remove("hidden");
-    button.textContent = "Hide the love 💙";
-    fadeIn();
-  } else {
-    surprise.classList.add("hidden");
-    button.textContent = "Click here 💖";
-    fadeOut(FADE_OUT);
-  }
-}
-
-/* =========================
-   VOLUME LIVE
-========================= */
-function setVolume(value) {
-  audio.volume = value;
-}
-
-/* =========================
-   MESSAGE SECRET
-========================= */
-document.getElementById("secretBtn").addEventListener("click", function () {
-  const password = prompt("🔒 Enter the password to see the secret message :");
-
-  if (password === "Kirby01082009Duck") {
-    document.getElementById("secretContent").classList.remove("hidden");
-    this.style.display = "none";
-  } else if (password !== null) {
-    alert("❌ Password incorrect !");
-  }
-});
-</script>
