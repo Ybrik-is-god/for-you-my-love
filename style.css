@@ -1,130 +1,239 @@
+/* Reset box-sizing pour éviter débordements */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+/* Corps de page */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0B132B, #1C2541);
-  color: #EAEAEA;
-  text-align: center;
-  padding: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0B132B, #1C2541);
+    color: #EAEAEA;
+    text-align: center;
+    overflow-x: hidden;
+    padding: 0 10px;
 }
 
 /* Header */
 header {
-  padding: 50px 10px;
+    padding: 60px 10px;
 }
 
 h1, h2 {
-  color: #6FFFE9;
+    color: #6FFFE9;
 }
 
-/* Sections */
+h1 {
+    font-size: 2.5em;
+}
+
 section {
-  background: rgba(58, 80, 107, 0.6);
-  margin: 30px auto;
-  padding: 20px;
-  border-radius: 20px;
-  max-width: 800px;
+    background: rgba(58, 80, 107, 0.6);
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Boutons */
+/* Paragraphes */
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Heart animation */
+.heart {
+    font-size: 3em;
+    animation: beat 1.5s infinite;
+    color: #6FFFE9;
+}
+
+@keyframes beat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* Bouton */
 button {
-  background: #3A86FF;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
+    background: #3A86FF;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-  background: #5FA8FF;
-  transform: scale(1.05);
+    background: #5FA8FF;
+    transform: scale(1.05);
 }
 
+/* Signature */
+.signature {
+    margin-top: 15px;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #A0C4FF;
+}
+
+/* Surprise hidden */
 .hidden {
-  display: none;
-}
-
-/* Love */
-.love-gif {
-  max-width: 250px;
-  border-radius: 20px;
-  margin-top: 15px;
-}
-
-.love-text {
-  margin-top: 15px;
-}
-
-/* Volume */
-.volume-control {
-  margin-top: 15px;
-}
-
-/* Secret */
-.secret-message {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 1001;
+    display: none;
 }
 
 #secretContent {
-  position: fixed;
-  bottom: 60px;
-  right: 10px;
-  background: rgba(58, 80, 107, 0.9);
-  padding: 10px;
-  border-radius: 10px;
-  z-index: 1001;
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    background: rgba(58, 80, 107, 0.8);
+    color: #A0C4FF;
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 200px;
+    text-align: center;
+    z-index: 998;
 }
 
-/* Personnages */
-.side-character {
-  position: fixed;
-  width: 70px;
-  z-index: 999;
-  animation: float 3s ease-in-out infinite;
+.love-text {
+    font-size: 1.2em;
+    margin-top: 15px;
+    color: #EAEAEA;
 }
 
-#char1 {
-  bottom: 30px;
-  left: 10px;
+/* Gif amour */
+.love-gif {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 20px;
+    animation: fadeIn 1s ease forwards;
+    pointer-events: none;
 }
 
-#char2 {
-  bottom: 120px;
-  right: 20px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+/* Volume slider */
+.volume-control {
+    margin-top: 15px;
+    color: #A0C4FF;
+    font-size: 0.9em;
 }
 
+.volume-control label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.volume-control input[type="range"] {
+    width: 100%;
+    max-width: 200px;
+    accent-color: #3A86FF;
+    cursor: pointer;
+}
+
+/* Album d'images responsive */
 .album {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    justify-items: center;
+    margin-top: 20px;
 }
 
 .album img {
-  width: 100%;
-  max-width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .album img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Message secret coin bas droite */
+.secret-message {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 10px;
+    color: #A0C4FF;
+    opacity: 0.6;
+    z-index: 997;
+}
+
+/* Footer */
+footer {
+    margin: 30px 0;
+    font-size: 0.9em;
+    color: #A0C4FF;
+}
+
+/* Personnages flottants */
+.side-character {
+    position: fixed;
+    width: 80px;
+    z-index: 999;
+    transition: transform 0.5s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Animations différentes pour chaque personnage */
+#char1 {
+    bottom: 30px;
+    left: 10px;
+    animation: float1 3s ease-in-out infinite;
+}
+
+#char2 {
+    bottom: 150px;
+    right: 20px;
+    animation: float2 4s ease-in-out infinite;
+}
+
+/* Animation flottante */
+@keyframes float1 {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes float2 {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Responsive pour mobile */
+@media screen and (max-width: 480px) {
+    .side-character {
+        width: 50px;
+        bottom: 50px;
+    }
 }
