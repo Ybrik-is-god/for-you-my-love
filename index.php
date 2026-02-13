@@ -18,6 +18,55 @@ $conn->close();
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
+<section>
+        <h2>Why I love you</h2>
+        <p>
+            I love you for the little moments, the big bursts of laughter, the silences that speak volumes, and the sweetness you bring to my life. Every day by your side is a gift I cherish. I love when you are telling me that I'm the most important thing to your eyes and that I know I can trust you.
+        </p>
+    </section>
+
+    <section>
+        <h2>Our story</h2>
+        <p>
+            This site is simply a reflection of what I feel: something sincere, unique, and filled with love. No matter the path, as long as it's traveled with you.
+        </p>
+    </section>
+
+    <section>
+        <h2>A message for you</h2>
+        <p>
+            Thank you for being you. Thank you for existing. Thank you for sharing your love. Today, tomorrow, and for a long time to come. Btw sorry in advance but you are stuck with me >:3
+        </p>
+        <div class="signature">— With all my love</div>
+    </section>
+
+    <section>
+        <h2>A little button, for a big heart</h2>
+        <button id="loveBtn" onclick="toggleLove()">Click here 💖</button>
+        <div id="surprise" class="hidden">
+            <p class="love-text">I love you more than words can say 💙</p>
+            <img src="love.gif" alt="Gif d'amour" class="love-gif">
+            <audio id="loveSound" src="Love_Sound.mp3"></audio>
+            <div class="volume-control">
+                <label for="volume">Volume</label>
+                <input type="range" id="volume" min="0" max="1" step="0.01" value="0.7" oninput="setVolume(this.value)">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        Made with all my heart for you and only you :3
+    </footer>
+
+    <div class="secret-message">
+        <button id="secretBtn">💌 Psst… Click here</button>
+    </div>
+
+    <div id="secretContent" class="hidden">
+        <p>Here is the secret content! 💙</p>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch the video</a>
+    </div>
     <!-- ... (header and other sections remain the same) ... -->
 
     <section>
@@ -50,3 +99,4 @@ $conn->close();
     <script src="script.js"></script>
 </body>
 </html>
+
