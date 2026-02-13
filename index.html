@@ -10,42 +10,22 @@
 
   <header>
     <h1>Happy Valentine's Day 💙</h1>
-    <h2>To the person who makes my heart beat faster ⭐ (you :3)</h2>
+    <h2>To the person who makes my heart beat faster ⭐</h2>
     <div class="heart">⭐</div>
   </header>
 
   <section>
     <h2>Why I love you</h2>
     <p>
-      I love you for the little moments, the big bursts of laughter, 
-      the silences that speak volumes, and the sweetness you bring to my life. 
-      Every day by your side is a gift I cherish. I love when you are telling me that I'm the most important thing to your eyes and that I know I can trust you.
+      I love you for the little moments, the big bursts of laughter,
+      the silences that speak volumes, and the sweetness you bring to my life.
     </p>
-  </section>
-
-  <section>
-    <h2>Our story</h2>
-    <p>
-      This site is simply a reflection of what I feel: 
-      something sincere, unique, and filled with love. 
-      No matter the path, as long as it's traveled with you.
-    </p>
-  </section>
-
-  <section>
-    <h2>A message for you</h2>
-    <p>
-      Thank you for being you. Thank you for existing. 
-      Thank you for sharing your love. Today, tomorrow, and for a long time to come.
-      Btw sorry in advance but you are stuck with me >:3
-    </p>
-    <div class="signature">— With all my love</div>
   </section>
 
   <section>
     <h2>A little button, for a big heart</h2>
 
-    <button id="loveBtn" onclick="toggleLove()">Click here ⭐</button>
+    <button id="loveBtn">Click here ⭐</button>
 
     <div id="surprise" class="hidden">
       <p class="love-text">I love you more than words can say 💙</p>
@@ -54,31 +34,33 @@
     </div>
 
     <div class="volume-control">
-        <label for="volume">Volume</label>
-        <input 
-            type="range" 
-            id="volume" 
-            min="0" 
-            max="1" 
-            step="0.01" 
-            value="0.7"
-            oninput="setVolume(this.value)"
-        >
+      <label for="volume">Volume</label>
+      <input
+        type="range"
+        id="volume"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.7"
+      >
     </div>
-
   </section>
 
   <footer>
-    Made with all my heart for you and only you :3
+    Made with all my heart for you 💙
   </footer>
-  
+
+  <!-- Bouton secret -->
   <div class="secret-message">
     <button id="secretBtn">💌 Psst… Click here</button>
   </div>
 
+  <!-- Message secret -->
   <div id="secretContent" class="hidden">
     <p>Here is the secret content! 💙</p>
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch the video</a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+      Watch the video
+    </a>
   </div>
 
   <section>
@@ -95,19 +77,14 @@
     </div>
   </section>
 
+  <!-- Personnages -->
+  <img src="personnage1.png" id="char1" class="side-character" alt="Personnage 1">
+  <img src="personnage2.png" id="char2" class="side-character" alt="Personnage 2">
+
   <script src="script.js"></script>
-
-  <!-- Personnages flottants -->
-  <a href="https://youtu.be/43xaiMk_25A?si=2OdCwwZ7s_775Ipn" target="_blank">
-    <img src="personnage1.png" id="char1" class="side-character" alt="Personnage 1">
-  </a>
-
-  <a href="https://www.youtube.com/playlist?list=PL-YyD_SmkJxYJIOROhGQ673mwV7HcDuBQ" target="_blank">
-    <img src="personnage2.png" id="char2" class="side-character" alt="Personnage 2">
-  </a>
-
 </body>
 </html>
+
 
 
 
